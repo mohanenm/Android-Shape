@@ -1,17 +1,20 @@
-/*
+
 package edu.luc.etl.cs313.android.shapes.model;
 
 import java.util.Iterator;
-/*
+
 /*
  * A shape visitor for calculating the bounding box, that is, the smallest
  * rectangle containing the shape. The resulting bounding box is returned as a
  * rectangle at a specific location.
  */
-/*
+
 public class BoundingBox implements Visitor<Location> {
 
-    // DONE entirely your job (except onCircle)
+    // TODO entirely your job (except onCircle)
+    /* trying to understand tests, simple groups, middle groups, etc
+
+     */
 
     @Override
     public Location onCircle(final Circle c) {
@@ -35,14 +38,15 @@ public class BoundingBox implements Visitor<Location> {
         final Iterator<? extends Shape> itr = g.getShapes().iterator();
         while (itr.hasNext()) {
             final Location local = itr.next().accept(this);
-            int x1 = local.getX();
-            int y1 = local.getY();
+            int x1 = local.getX(); // based on testBoundingBox, don't know
+            int y1 = local.getY(); // if this will work though; my psuedo-code
+            // was somewhat wrong.
             int x2 = local.getX() + ((Rectangle) local.getShape()).getWidth();
             int y2 = local.getX() + ((Rectangle) local.getShape()).getHeight();
 
 
         }
-
+        return Location;
     }
 
         @Override
@@ -72,4 +76,3 @@ public class BoundingBox implements Visitor<Location> {
         }
     }
 
-*/
