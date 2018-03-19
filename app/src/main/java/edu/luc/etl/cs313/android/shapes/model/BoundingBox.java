@@ -11,7 +11,7 @@ import java.util.Iterator;
 /*
 public class BoundingBox implements Visitor<Location> {
 
-    // TODO entirely your job (except onCircle)
+    // DONE entirely your job (except onCircle)
 
     @Override
     public Location onCircle(final Circle c) {
