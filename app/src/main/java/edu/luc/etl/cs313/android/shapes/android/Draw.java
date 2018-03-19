@@ -4,6 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import edu.luc.etl.cs313.android.shapes.model.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.LinkedList;
+
 
 /**
  * A Visitor for drawing a shape to an Android canvas.
@@ -73,13 +77,15 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onOutline(Outline o) {
-
+		Style style_one= paint.getStyle();
+		paint.setStyle(Style.STROKE);
+		o.getShape().accept(this);
+		paint.setStyle(style_one);
 		return null;
 	}
 
 	@Override
 	public Void onPolygon(final Polygon s) {
-
 		final float[] pts = null;
 
 		canvas.drawLines(pts, paint);
