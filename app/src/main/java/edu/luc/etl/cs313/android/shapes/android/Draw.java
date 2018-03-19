@@ -17,15 +17,23 @@ public class Draw implements Visitor<Void> {
 	private final Paint paint;
 
 	public Draw(final Canvas canvas, final Paint paint) {
-		this.canvas = null; // FIXME
-		this.paint = null; // FIXME
+		this.canvas = canvas; // DONE
+		this.paint = paint; // DONE
 		paint.setStyle(Style.STROKE);
 	}
 
 	@Override
 	public Void onCircle(final Circle c) {
 		canvas.drawCircle(0, 0, c.getRadius(), paint);
+		int c1= paint.getColor();
+		Style s1=paint.getStyle();
+		paint.setColor(c.getColor()); // don't know about this yet
+		paint.setStyle(Style.STROKE);
+		c.getShape().accept(this);
+		paint.setColor(c1);
+		paint.setStyle(s1);
 		return null;
+	}
 	}
 
 	@Override
