@@ -76,10 +76,10 @@ public class Draw implements Visitor<Void> {
 	}
 
 	@Override
-	public Void onOutline(Outline o) {
+	public Void onOutline(Outline out) {
 		Style style_one= paint.getStyle();
 		paint.setStyle(Style.STROKE);
-		o.getShape().accept(this);
+		out.getShape().accept(this);
 		paint.setStyle(style_one);
 		return null;
 	}
