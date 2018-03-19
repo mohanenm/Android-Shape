@@ -5,8 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import edu.luc.etl.cs313.android.shapes.model.*;
 import java.util.Iterator;
-import java.util.List;
-import java.util.LinkedList;
+import java.util.*;
 
 
 /**
@@ -63,10 +62,10 @@ public class Draw implements Visitor<Void> {
 	}
 
 	@Override
-	public Void onLocation(final Location l) {
-		canvas.translate(1.getX(), 1.getY());
-		1.getShape().accept(this);
-		canvas.translate(-1.getX(), -1.getY());
+	public Void onLocation(final Location locate) {
+		canvas.translate(locate.getX(), locate.getY());
+		locate.getShape().accept(this);
+		canvas.translate(-locate.getX(), -locate.getY());
 		return null;
 	}
 
