@@ -8,6 +8,7 @@ location.
 to translate that
 * faiz has the uml diagram, was not present. meeting later
 * having git issues(adding multiple remotes)
+* 
 
 
 # Learning Objectives
