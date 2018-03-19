@@ -43,19 +43,24 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onFill(final Fill f) {
-
+		Style s1=paint.getStyle();
+		paint.setStyle(Style.FILL_AND_STROKE);
+		f.getShape().accept(this);
+		paint.setStyle(s1);
 		return null;
 	}
 
 	@Override
 	public Void onGroup(final Group g) {
-
+		final Iterator<? extends Shape> itr=g.getShapes().iterator();
+		while(itr.hasNext())
+		    itr.next().accept(this)
 		return null;
 	}
 
 	@Override
 	public Void onLocation(final Location l) {
-
+		canvas.translate(1.getX(), 1.getY());
 		return null;
 	}
 
