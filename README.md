@@ -6,7 +6,8 @@ Trying to work out bounding box, group complexity,
 location. 
 * started with pseudo-code and then now I am just trying 
 to translate that
-* faiz has the uml diagram, was not present. meeting later.
+* faiz has the uml diagram, was not present. meeting later
+* having git issues(adding multiple remotes)
 
 
 # Learning Objectives
