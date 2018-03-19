@@ -7,27 +7,30 @@ package edu.luc.etl.cs313.android.shapes.model;
 public class Size implements Visitor<Integer> {
 
 	// TODO entirely your job
+    // shape-methods: count
+	// interface=methods: get and accept states
 
 	@Override
-	public Integer onPolygon(final Polygon p) {
-		int numberOfShape = 0;
-		numberOfShape++;
+	public Integer onPolygon(final Polygon p) {int numberOfShape = 0;numberOfShape++;
 		return numberOfShape;
 	}
 
 	@Override
-	public Integer onCircle(final Circle c) {
-		return -1;
+	public Integer onCircle(final Circle c) {int numberOfShape = 0;numberOfShape++;
+		return numberOfShape;
 	}
 
 	@Override
 	public Integer onGroup(final Group g) {
-		return -1;
+		int numberOfShape = 0;
+		for (Shape shape : g.getShapes()) {
+              numberOfShape += shape.accept(this);
+		}
+		return numberOfShape;
 	}
-
 	@Override
-	public Integer onRectangle(final Rectangle q) {
-		return -1;
+	public Integer onRectangle(final Rectangle q) { int numberOfShape = 0; numberOfShape++;
+		return numberOfShape;
 	}
 
 	@Override
