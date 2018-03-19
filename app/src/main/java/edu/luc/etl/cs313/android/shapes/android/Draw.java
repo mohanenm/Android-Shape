@@ -49,7 +49,6 @@ public class Draw implements Visitor<Void> {
 		paint.setStyle(s1);
 		return null;
 	}
-
 	@Override
 	public Void onGroup(final Group g) {
 		final Iterator<? extends Shape> itr=g.getShapes().iterator();
