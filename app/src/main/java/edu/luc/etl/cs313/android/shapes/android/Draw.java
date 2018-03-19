@@ -53,13 +53,15 @@ public class Draw implements Visitor<Void> {
 	public Void onGroup(final Group g) {
 		final Iterator<? extends Shape> itr=g.getShapes().iterator();
 		while(itr.hasNext())
-		    itr.next().accept(this)
+		    itr.next().accept(this);
 		return null;
 	}
 
 	@Override
 	public Void onLocation(final Location l) {
 		canvas.translate(1.getX(), 1.getY());
+		1.getShape().accept(this);
+		canvas.translate(-1.getX(), -1.getY());
 		return null;
 	}
 
