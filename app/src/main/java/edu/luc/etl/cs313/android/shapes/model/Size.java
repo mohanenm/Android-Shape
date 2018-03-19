@@ -10,7 +10,9 @@ public class Size implements Visitor<Integer> {
 
 	@Override
 	public Integer onPolygon(final Polygon p) {
-		return -1;
+		int numberOfShape = 0;
+		numberOfShape++;
+		return numberOfShape;
 	}
 
 	@Override
