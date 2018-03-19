@@ -15,6 +15,7 @@ import java.util.LinkedList;
 public class Draw implements Visitor<Void> {
 
 	// TODO entirely your job (except onCircle)
+    // almost done faiz, try to finish the polygon
 
 	private final Canvas canvas;
 
