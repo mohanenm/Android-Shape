@@ -1,6 +1,5 @@
 
 # read this faiz
-
 Started with working out the ideas with Faiz.
 Trying to work out bounding box, group complexity, 
 location. 
@@ -13,15 +12,12 @@ to translate that
 * Added faiz on git and bitbucket 
 * did a lot of the translating from pseudo-code to code. All patterns are good, 
 there are two errors related to the polygon shape. Other than that, we should be good!
-
 # Learning Objectives
-
 * Familiarity with a simple graphical (output-only) Android project
 * Basic design patterns and their purpose
     * Composite pattern
     * Decorator pattern
     * Visitor pattern
-
 # Reading/Listening
 
 * SE Radio episode 1
