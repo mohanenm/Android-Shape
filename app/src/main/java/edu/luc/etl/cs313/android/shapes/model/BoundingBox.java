@@ -36,15 +36,14 @@ public class BoundingBox implements Visitor<Location> {
         int max_y=0;
         int min_x=Integer.MAX_VALUE;
         int min_y=Integer.MAX_VALUE;
-
         final Iterator<? extends Shape> itr = g.getShapes().iterator();
         if (itr.hasNext()) {
             do {
-                final Location loc = itr.next().accept(this);
-                int x1 = loc.getX();
-                int y1 = loc.getY();
-                int x2 = loc.getX() + ((Rectangle) loc.getShape()).getWidth();
-                int y2 = loc.getY() + ((Rectangle) loc.getShape()).getHeight();
+                final Location local = itr.next().accept(this);
+                int x1 = local.getX();
+                int y1 = local.getY();
+                int x2 = local.getX() + ((Rectangle) local.getShape()).getWidth();
+                int y2 = local.getY() + ((Rectangle) local.getShape()).getHeight();
 
                 if (max_x < x2) {
                     max_x = x2;
@@ -91,23 +90,25 @@ public class BoundingBox implements Visitor<Location> {
         }
 
         @Override
-        public Location onOutline ( final Outline o){
+        public Location onOutline ( final Outline o) {
             return o.getShape().accept(this); //same as above
         }
+
+
 
         @Override
         public Location onPolygon ( final Polygon s){
             final Iterator<? extends Point> itr = s.getPoints().iterator();
-            Point poly_point = itr.next();
-            int min_x=poly_point.getX();
-            int min_y=poly_point.getY();
+            Point p = itr.next();
+            int min_x=p.getX();
+            int min_y=p.getY();
             int max_x = min_x;
             int max_y = min_y;
             if (itr.hasNext()) {
                 do {
-                    poly_point = itr.next();
-                    int x = poly_point.getX();
-                    int y = poly_point.getY();
+                    p = itr.next();
+                    int x = p.getX();
+                    int y = p.getY();
                     if (min_x > x) {min_x = x;
                     break;}
                     if (min_y > y) {min_y = y;
@@ -118,7 +119,7 @@ public class BoundingBox implements Visitor<Location> {
                     break;}
                 } while (itr.hasNext());
             }
-            return new Location(min_x,min_y,new Rectangle(max_x-min_x,max_y-min_y));
+            return new Location(0,0, new Rectangle(max_x-min_x,max_y-min_y));
         }
 }
 
