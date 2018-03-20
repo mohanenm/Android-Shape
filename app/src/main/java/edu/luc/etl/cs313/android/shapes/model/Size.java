@@ -6,7 +6,7 @@ package edu.luc.etl.cs313.android.shapes.model;
  */
 public class Size implements Visitor<Integer> {
 
-	// done entirely your job
+	// din entirely your job
 	// should be done
     // shape-methods: count
 	// interface=methods: get and accept states

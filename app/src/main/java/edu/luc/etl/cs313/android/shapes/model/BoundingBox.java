@@ -96,31 +96,34 @@ public class BoundingBox implements Visitor<Location> {
 
 
 
-        @Override
-        public Location onPolygon ( final Polygon s){
-            final Iterator<? extends Point> itr = s.getPoints().iterator();
-            Point p = itr.next();
-            int min_x=p.getX();
-            int min_y=p.getY();
-            int max_x = min_x;
-            int max_y = min_y;
-            if (itr.hasNext()) {
-                do {
-                    p = itr.next();
-                    int x = p.getX();
-                    int y = p.getY();
-                    if (min_x > x) {min_x = x;
-                    break;}
-                    if (min_y > y) {min_y = y;
-                    break;}
-                    if (max_x < x) {max_x = x;
-                    break;}
-                    if (max_y < y) {max_y = y;
-                    break;}
-                } while (itr.hasNext());
+    @Override
+    public Location onPolygon(final Polygon s) {
+        final List<? extends Point> polygonPoints = s.getPoints();
+        int xMin = Integer.MAX_VALUE;
+        int xMax = Integer.MIN_VALUE;
+        int yMin = Integer.MAX_VALUE;
+        int yMax = Integer.MIN_VALUE;
+        for (Point p : polygonPoints)
+        {
+            if (p.getX() < xMin)
+            {
+                xMin = p.getX();
             }
-            return new Location(0,0, new Rectangle(max_x-min_x,max_y-min_y));
+            if (p.getX() > xMax)
+            {
+                xMax = p.getX();
+            }
+            if (p.getY() < yMin)
+            {
+                yMin = p.getY();
+            }
+            if (p.getY() > yMax)
+            {
+                yMax = p.getY();
+            }
         }
+        return new Location(xMin,yMin,new Rectangle((xMax-xMin),(yMax-yMin)));
+    }
 }
 
 
