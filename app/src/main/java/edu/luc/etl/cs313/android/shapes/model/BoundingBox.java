@@ -32,10 +32,10 @@ public class BoundingBox implements Visitor<Location> {
 
     @Override
     public Location onGroup(final Group g) {
-        int maxX=0;
-        int maxY=0;
-        int minX=Integer.MAX_VALUE;
-        int minY=Integer.MAX_VALUE;
+        int max_x=0;
+        int max_y=0;
+        int min_x=Integer.MAX_VALUE;
+        int min_y=Integer.MAX_VALUE;
 
         final Iterator<? extends Shape> itr = g.getShapes().iterator();
         if (itr.hasNext()) {
@@ -46,21 +46,21 @@ public class BoundingBox implements Visitor<Location> {
                 int x2 = loc.getX() + ((Rectangle) loc.getShape()).getWidth();
                 int y2 = loc.getY() + ((Rectangle) loc.getShape()).getHeight();
 
-                if (maxX < x2) {
-                    maxX = x2;
+                if (max_x < x2) {
+                    max_x = x2;
                 }
-                if (maxY < y2) {
-                    maxY = y2;
+                if (max_y < y2) {
+                    max_y = y2;
                 }
-                if (minX > x1) {
-                    minX = x1;
+                if (min_x > x1) {
+                    min_x = x1;
                 }
-                if (minY > y1) {
-                    minY = y1;
+                if (min_y > y1) {
+                    min_y = y1;
                 }
             } while (itr.hasNext());
         }
-        return new Location(minX,minY,new Rectangle(maxX-minX,maxY-minY));
+        return new Location(min_x,min_y,new Rectangle(max_x-min_x,max_y-min_y));
 
     }
 
@@ -101,17 +101,21 @@ public class BoundingBox implements Visitor<Location> {
             Point poly_point = itr.next();
             int min_x=poly_point.getX();
             int min_y=poly_point.getY();
-            int max_x= min_x;
-            int max_y=min_y;
+            int max_x = min_x;
+            int max_y = min_y;
             if (itr.hasNext()) {
                 do {
                     poly_point = itr.next();
                     int x = poly_point.getX();
                     int y = poly_point.getY();
-                    if (min_x > x) {min_x = x;}
-                    if (min_y > y) {min_y = y;}
-                    if (max_x < x) {max_x = x;}
-                    if (max_y < y) {max_y = y;}
+                    if (min_x > x) {min_x = x;
+                    break;}
+                    if (min_y > y) {min_y = y;
+                    break;}
+                    if (max_x < x) {max_x = x;
+                    break;}
+                    if (max_y < y) {max_y = y;
+                    break;}
                 } while (itr.hasNext());
             }
             return new Location(min_x,min_y,new Rectangle(max_x-min_x,max_y-min_y));
