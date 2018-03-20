@@ -35,29 +35,30 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onStroke(final Stroke c) {
-        int c1= paint.getColor();
-        Style s1=paint.getStyle();
-        paint.setColor(c.getColor()); // don't know about this yet
+        int c_one;
+		c_one = paint.getColor();
+		Style s_one;
+		s_one = paint.getStyle();
+		paint.setColor(c.getColor()); // don't know about this yet
         paint.setStyle(Style.STROKE);
         c.getShape().accept(this);
-        paint.setColor(c1);
-        paint.setStyle(s1);
+        paint.setColor(c_one);
+        paint.setStyle(s_one);
 		return null;
 	}
 
 	@Override
 	public Void onFill(final Fill f) {
-		Style s1=paint.getStyle();
+		Style s_one; // looks nicer to me
+		s_one = paint.getStyle();
 		paint.setStyle(Style.FILL_AND_STROKE);
 		f.getShape().accept(this);
-		paint.setStyle(s1);
+		paint.setStyle(s_one);
 		return null;
 	}
 	@Override
 	public Void onGroup(final Group g) {
-		final Iterator<? extends Shape> itr=g.getShapes().iterator();
-		while(itr.hasNext())
-		    itr.next().accept(this);
+		for (Shape shape : g.getShapes()) shape.accept(this);
 		return null;
 	}
 
