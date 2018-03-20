@@ -12,5 +12,4 @@ public interface Visitor<Result> {
 	Result onFill(Fill c);
 	Result onLocation(Location l);
 	Result onOutline(Outline o);
-	Result onPolygon(Polygon p);
-}
+	Result onPolygon(Polygon p);}
