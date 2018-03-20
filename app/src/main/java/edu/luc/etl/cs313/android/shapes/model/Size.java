@@ -6,7 +6,8 @@ package edu.luc.etl.cs313.android.shapes.model;
  */
 public class Size implements Visitor<Integer> {
 
-	// TODO entirely your job
+	// done entirely your job
+	// should be done
     // shape-methods: count
 	// interface=methods: get and accept states
 
@@ -21,9 +22,7 @@ public class Size implements Visitor<Integer> {
 	}
 
 	@Override
-	public Integer onGroup(final Group g) {
-		int numberOfShape = 0;
-		for (Shape shape : g.getShapes()) {
+	public Integer onGroup(final Group g) {int numberOfShape = 0; for (Shape shape : g.getShapes()) {
               numberOfShape += shape.accept(this);
 		}
 		return numberOfShape;
@@ -34,22 +33,18 @@ public class Size implements Visitor<Integer> {
 	}
 
 	@Override
-	public Integer onOutline(final Outline o) {
-		return -1;
+	public Integer onOutline(final Outline o) {return o.getShape().accept(this);
 	}
 
 	@Override
-	public Integer onFill(final Fill c) {
-		return -1;
+	public Integer onFill(final Fill c) {return c.getShape().accept(this);
 	}
 
 	@Override
-	public Integer onLocation(final Location l) {
-		return -1;
+	public Integer onLocation(final Location l) {return l.getShape().accept(this);
 	}
 
 	@Override
-	public Integer onStroke(final Stroke c) {
-		return -1;
+	public Integer onStroke(final Stroke c) {return c.getShape().accept(this);
 	}
 }

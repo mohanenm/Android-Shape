@@ -1,5 +1,5 @@
 
-# read
+# read this faiz
 
 Started with working out the ideas with Faiz.
 Trying to work out bounding box, group complexity, 
@@ -11,6 +11,8 @@ to translate that
 * github working, trying to fix bit-bucket
 * Bitbucket problem solved - two remotes now 
 * Added faiz on git and bitbucket 
+* did a lot of the translating from pseudo-code to code. All patterns are good, 
+there are two errors related to the polygon shape. Other than that, we should be good!
 
 # Learning Objectives
 

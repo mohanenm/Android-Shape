@@ -32,37 +32,36 @@ public class BoundingBox implements Visitor<Location> {
 
     @Override
     public Location onGroup(final Group g) {
-        int max_x = 0;
-        int max_y = 0;
-        int min_x = Integer.MAX_VALUE;
-        int min_y= Integer.MAX_VALUE;
+        int maxX=0;
+        int maxY=0;
+        int minX=Integer.MAX_VALUE;
+        int minY=Integer.MAX_VALUE;
 
-        // could have used while loop, as well
-        for (Shape shape : g.getShapes()) {
-            final Location local;
-            local = shape.accept(this);
-            int x1 = local.getX(); // based on testBoundingBox, don't know
-            int y1 = local.getY(); // if this will work though; my psuedo-code
-            // was somewhat wrong.
-            int x2 = local.getX() + ((Rectangle) local.getShape()).getWidth();
-            int y2 = local.getX() + ((Rectangle) local.getShape()).getHeight();
-            if (max_x < x2) {
-                max_x = x2;
-            }
-            if (max_y < y2) {
-                max_y = y2;
-            }
-            if (min_x > x1) {
-                min_x = x1;
-            }
-            if (min_y > y1) {
-                min_y = y1;
-            }
-            // thinking this may actually be wrong
+        final Iterator<? extends Shape> itr = g.getShapes().iterator();
+        if (itr.hasNext()) {
+            do {
+                final Location loc = itr.next().accept(this);
+                int x1 = loc.getX();
+                int y1 = loc.getY();
+                int x2 = loc.getX() + ((Rectangle) loc.getShape()).getWidth();
+                int y2 = loc.getY() + ((Rectangle) loc.getShape()).getHeight();
 
-
+                if (maxX < x2) {
+                    maxX = x2;
+                }
+                if (maxY < y2) {
+                    maxY = y2;
+                }
+                if (minX > x1) {
+                    minX = x1;
+                }
+                if (minY > y1) {
+                    minY = y1;
+                }
+            } while (itr.hasNext());
         }
-        return new Location(min_x, min_y, new Rectangle(max_x-min_x,max_y-min_y));
+        return new Location(minX,minY,new Rectangle(maxX-minX,maxY-minY));
+
     }
 
 
@@ -77,8 +76,10 @@ public class BoundingBox implements Visitor<Location> {
 
         @Override
         public Location onRectangle ( final Rectangle r){
-            final int width = r.getWidth(); // take width from super
-            final int height = r.getHeight();
+            final int width; // take width from super
+            width = r.getWidth();
+            final int height;
+            height = r.getHeight();
             return new Location(0,0, new Rectangle(width, height)); // this is finally making sense
         }
 
@@ -97,30 +98,20 @@ public class BoundingBox implements Visitor<Location> {
         @Override
         public Location onPolygon ( final Polygon s){
             final Iterator<? extends Point> itr = s.getPoints().iterator();
-            Point poly_point =itr.next();
+            Point poly_point = itr.next();
             int min_x=poly_point.getX();
             int min_y=poly_point.getY();
             int max_x= min_x;
             int max_y=min_y;
-
             if (itr.hasNext()) {
                 do {
                     poly_point = itr.next();
                     int x = poly_point.getX();
                     int y = poly_point.getY();
-
-                    if (min_x > x) {
-                        min_x = x;
-                    }
-                    if (min_y > y) {
-                        min_y = y;
-                    }
-                    if (max_x < x) {
-                        max_x = x;
-                    }
-                    if (max_y < y) {
-                        max_y = y;
-                    }
+                    if (min_x > x) {min_x = x;}
+                    if (min_y > y) {min_y = y;}
+                    if (max_x < x) {max_x = x;}
+                    if (max_y < y) {max_y = y;}
                 } while (itr.hasNext());
             }
             return new Location(min_x,min_y,new Rectangle(max_x-min_x,max_y-min_y));

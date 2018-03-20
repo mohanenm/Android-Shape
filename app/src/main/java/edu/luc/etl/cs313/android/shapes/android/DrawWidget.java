@@ -27,7 +27,8 @@ public class DrawWidget extends View {
 		setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
 	}
 	
-	// TODO once BoundingBox and Draw are implemented, change Fixtures.simpleCircle
+	// done once BoundingBox and Draw are implemented, change Fixtures.simpleCircle
+	// do nto knwo why, just
 	// to Fixtures.complexGroup and test the app on an emulator or Android device
 	// to make sure the correct figure is drawn (see Project 3 description for link)
 
@@ -35,8 +36,7 @@ public class DrawWidget extends View {
 	@Override
 	@SuppressLint("DrawAllocation")
 	protected void onDraw(final Canvas canvas) {
-		final Shape shape;
-		shape = Fixtures.simpleCircle;
+		final Shape shape = Fixtures.complexGroup; // because complex actually implements
 		final Location b;
 		b = shape.accept(new BoundingBox());
 		canvas.translate(-b.getX(), -b.getY());

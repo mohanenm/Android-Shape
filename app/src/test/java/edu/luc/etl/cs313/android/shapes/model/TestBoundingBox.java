@@ -74,11 +74,12 @@ public class TestBoundingBox {
 	@Test
 	public void testGroupSimple() {
 		Location b = simpleGroup.accept(v);
-		Rectangle r = (Rectangle) b.getShape();
+		Rectangle r = (Rectangle) b.getShape(); // having issues with this test
 		assertEquals(150, b.getX());
 		assertEquals(50, b.getY());
 		assertEquals(350, r.getWidth());
-		assertEquals(300, r.getHeight());
+		assertEquals(300, r.getHeight()); // not passing??
+		//faiz, check and see why this is not passing
 	}
 
 	@Test

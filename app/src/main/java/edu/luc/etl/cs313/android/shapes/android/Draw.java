@@ -85,10 +85,12 @@ public class Draw implements Visitor<Void> {
 		return null;
 	}
 
+	// can you finish the polygon ones, faiz
+
 	@Override
 	public Void onPolygon(final Polygon s) {
-		final float[] pts = null;
-
+		final float[] pts;
+		pts = null;
 		canvas.drawLines(pts, paint);
 		return null;
 	}
