@@ -1,15 +1,13 @@
 
 package edu.luc.etl.cs313.android.shapes.model;
-import java.util.*;
 import java.util.Iterator;
 
 
-/*
+/**
  * A shape visitor for calculating the bounding box, that is, the smallest
  * rectangle containing the shape. The resulting bounding box is returned as a
  * rectangle at a specific location.
  */
-
 public class BoundingBox implements Visitor<Location> {
 
     // DONE entirely your job (except onCircle)
@@ -26,24 +24,29 @@ public class BoundingBox implements Visitor<Location> {
 
     @Override
     public Location onFill(final Fill f) {
+
         return f.getShape().accept(this);
     }
 
-
     @Override
     public Location onGroup(final Group g) {
-        int max_x=0;
-        int max_y=0;
-        int min_x=Integer.MAX_VALUE;
-        int min_y=Integer.MAX_VALUE;
+        int max_x;  // for sake of readability!!!
+        max_x = 0;
+        int max_y;
+        max_y = 0;
+        int min_x;
+        min_x = Integer.MAX_VALUE;
+        int min_y;
+        min_y = Integer.MAX_VALUE;
+
         final Iterator<? extends Shape> itr = g.getShapes().iterator();
         if (itr.hasNext()) {
             do {
-                final Location local = itr.next().accept(this);
-                int x1 = local.getX();
-                int y1 = local.getY();
-                int x2 = local.getX() + ((Rectangle) local.getShape()).getWidth();
-                int y2 = local.getY() + ((Rectangle) local.getShape()).getHeight();
+                final Location s_local = itr.next().accept(this);
+                int x1 = s_local.getX();
+                int y1 = s_local.getY();
+                int x2 = s_local.getX() + ((Rectangle) s_local.getShape()).getWidth();
+                int y2 = s_local.getY() + ((Rectangle) s_local.getShape()).getHeight();
 
                 if (max_x < x2) {
                     max_x = x2;
@@ -63,67 +66,69 @@ public class BoundingBox implements Visitor<Location> {
 
     }
 
+    @Override
+    public Location onLocation(final Location l) {
+        Location s_local=l.getShape().accept(this);// accepting final location from super
+        int x;
+        x = l.getX()+ s_local.getX();
+        int y; // get the final location from this method
+        y = l.getY() +s_local.getY();
+        return new Location(x, y, s_local.getShape());
+        //return null;
+    }
 
     @Override
-        public Location onLocation ( final Location l){
-        Location local = l.getShape().accept(this); // accepting final location from super
-        int x = l.getX() +local.getX(); // get the final location from this method
-        int y = l.getY() + local.getY();
-        return new Location(x,y,local.getShape());
-        //return null;
-        }
+    public Location onRectangle(final Rectangle r) {
 
-        @Override
-        public Location onRectangle ( final Rectangle r){
-            final int width; // take width from super
-            width = r.getWidth();
-            final int height;
-            height = r.getHeight();
-            return new Location(0,0, new Rectangle(width, height)); // this is finally making sense
-        }
+        final int width = r.getWidth();// take width from super, wait......no
+        final int height=r.getHeight();
+        return new Location(0, 0, new Rectangle(width,height)); // this is finally making sense
+    }
 
-        @Override
-        public Location onStroke ( final Stroke c){
+    @Override
+    public Location onStroke(final Stroke c)
+    {
+        return c.getShape().accept(this); //accept visitor result!
 
-            return c.getShape().accept(this); //accept visitor result!
+    }
 
-        }
-
-        @Override
-        public Location onOutline ( final Outline o) {
-            return o.getShape().accept(this); //same as above
-        }
-
-
-
+    @Override
+    public Location onOutline(final Outline o)
+    { return o.getShape().accept(this);
+    } // same as above
+/* issues in polygon had nothing to do with this code, or polygon code,
+* rather, the problem was the point class
+* spent waaaaaay too much time trying to figure that out
+ */
     @Override
     public Location onPolygon(final Polygon s) {
-        final List<? extends Point> polygonPoints = s.getPoints();
-        int xMin = Integer.MAX_VALUE;
-        int xMax = Integer.MIN_VALUE;
-        int yMin = Integer.MAX_VALUE;
-        int yMax = Integer.MIN_VALUE;
-        for (Point p : polygonPoints)
-        {
-            if (p.getX() < xMin)
-            {
-                xMin = p.getX();
-            }
-            if (p.getX() > xMax)
-            {
-                xMax = p.getX();
-            }
-            if (p.getY() < yMin)
-            {
-                yMin = p.getY();
-            }
-            if (p.getY() > yMax)
-            {
-                yMax = p.getY();
-            }
+        final Iterator<? extends Point> itr = s.getPoints().iterator();
+        Point p=itr.next();
+        int min_x=p.getX();
+        int min_y=p.getY();
+        int max_x= min_x;
+        int max_y=min_y;
+
+        if (itr.hasNext()) {
+            do {
+                p = itr.next();
+                int x = p.getX();
+                int y = p.getY();
+
+                if (min_x > x) {
+                    min_x = x;
+                }
+                if (min_y > y) {
+                    min_y = y;
+                }
+                if (max_x < x) {
+                    max_x = x;
+                }
+                if (max_y < y) {
+                    max_y = y;
+                }
+            } while (itr.hasNext());
         }
-        return new Location(xMin,yMin,new Rectangle((xMax-xMin),(yMax-yMin)));
+        return new Location(min_x,min_y,new Rectangle(max_x-min_x,max_y-min_y));
     }
 }
-
-
