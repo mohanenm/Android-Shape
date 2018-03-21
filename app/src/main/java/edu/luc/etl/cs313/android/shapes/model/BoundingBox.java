@@ -15,7 +15,6 @@ public class BoundingBox implements Visitor<Location> {
      * videos are helping with this much more
      * should be, need to finish this before I can move on: 7:10pm
      */
-
     @Override
     public Location onCircle(final Circle c) {
         final int radius = c.getRadius();

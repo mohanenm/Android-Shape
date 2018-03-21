@@ -1,5 +1,5 @@
 
-# read this faiz
+# Development notes
 Started with working out the ideas with Faiz.
 Trying to work out bounding box, group complexity, 
 location. 
@@ -16,6 +16,7 @@ there are two errors related to the polygon shape. Other than that, we should be
 * tried to merge and somehow deleted most files, fetching from bit bucket
 * ok back to normal, should commit, havent in a while
 * size and group were temp lost
+* tried to fix a few basic things, the newer api has rendering issues
 # Learning Objectives
 * Familiarity with a simple graphical (output-only) Android project
 * Basic design patterns and their purpose
