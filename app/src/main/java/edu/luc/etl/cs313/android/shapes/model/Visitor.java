@@ -5,12 +5,19 @@ package edu.luc.etl.cs313.android.shapes.model;
  * a generic result type.
  */
 public interface Visitor<Result> {
-	Result onCircle(Circle c);
-	Result onRectangle(Rectangle r);
-	Result onGroup(Group g);
-	Result onStroke(Stroke c);
-	Result onFill(Fill c);
-	Result onLocation(Location l);
-	Result onOutline(Outline o);
-	Result onPolygon(Polygon p);
+    Result onCircle(Circle c);
+
+    Result onRectangle(Rectangle r);
+
+    Result onGroup(Group g);
+
+    Result onStroke(Stroke c);
+
+    Result onFill(Fill c);
+
+    Result onLocation(Location l);
+
+    Result onOutline(Outline o);
+
+    Result onPolygon(Polygon p);
 }

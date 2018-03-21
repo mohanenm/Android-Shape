@@ -1,5 +1,5 @@
-
 package edu.luc.etl.cs313.android.shapes.model;
+
 import java.util.Iterator;
 
 
@@ -61,17 +61,17 @@ public class BoundingBox implements Visitor<Location> {
                 }
             } while (itr.hasNext());
         }
-        return new Location(min_x,min_y,new Rectangle(max_x-min_x,max_y-min_y));
+        return new Location(min_x, min_y, new Rectangle(max_x - min_x, max_y - min_y));
 
     }
 
     @Override
     public Location onLocation(final Location l) {
-        Location s_local=l.getShape().accept(this);// accepting final location from super
+        Location s_local = l.getShape().accept(this);// accepting final location from super
         int x;
-        x = l.getX()+ s_local.getX();
+        x = l.getX() + s_local.getX();
         int y; // get the final location from this method
-        y = l.getY() +s_local.getY();
+        y = l.getY() + s_local.getY();
         return new Location(x, y, s_local.getShape());
         //return null;
     }
@@ -80,33 +80,33 @@ public class BoundingBox implements Visitor<Location> {
     public Location onRectangle(final Rectangle r) {
 
         final int width = r.getWidth();// take width from super, wait......no
-        final int height=r.getHeight();
-        return new Location(0, 0, new Rectangle(width,height)); // this is finally making sense
+        final int height = r.getHeight();
+        return new Location(0, 0, new Rectangle(width, height)); // this is finally making sense
     }
 
     @Override
-    public Location onStroke(final Stroke c)
-    {
+    public Location onStroke(final Stroke c) {
         return c.getShape().accept(this); //accept visitor result!
 
     }
 
     @Override
-    public Location onOutline(final Outline o)
-    { return o.getShape().accept(this);
+    public Location onOutline(final Outline o) {
+        return o.getShape().accept(this);
     } // same as above
-/* issues in polygon had nothing to do with this code, or polygon code,
-* rather, the problem was the point class
-* spent waaaaaay too much time trying to figure that out
- */
+
+    /* issues in polygon had nothing to do with this code, or polygon code,
+    * rather, the problem was the point class
+    * spent waaaaaay too much time trying to figure that out
+     */
     @Override
     public Location onPolygon(final Polygon s) {
         final Iterator<? extends Point> itr = s.getPoints().iterator();
-        Point p=itr.next();
-        int min_x=p.getX();
-        int min_y=p.getY();
-        int max_x= min_x;
-        int max_y=min_y;
+        Point p = itr.next();
+        int min_x = p.getX();
+        int min_y = p.getY();
+        int max_x = min_x;
+        int max_y = min_y;
 
         if (itr.hasNext()) {
             do {
@@ -128,6 +128,6 @@ public class BoundingBox implements Visitor<Location> {
                 }
             } while (itr.hasNext());
         }
-        return new Location(min_x,min_y,new Rectangle(max_x-min_x,max_y-min_y));
+        return new Location(min_x, min_y, new Rectangle(max_x - min_x, max_y - min_y));
     }
 }
