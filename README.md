@@ -24,7 +24,6 @@ there are two errors related to the polygon shape. Other than that, we should be
     * Decorator pattern
     * Visitor pattern
 # Reading/Listening
-
 * SE Radio episode 1
 * APPP chapters 31 and 35
 
