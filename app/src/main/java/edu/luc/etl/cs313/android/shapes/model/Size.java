@@ -23,7 +23,7 @@ public class Size implements Visitor<Integer> {
 
     @Override
     public Integer onCircle(final Circle c) {
-        return 1;
+        return 1;  // FAIZ, WHY DO WE NOT HAVE TO COUNT THESE WITH A COUNTER//????????!!!!!!!!!1
 
         /*
         int num_of_shape = 0;
@@ -42,8 +42,13 @@ public class Size implements Visitor<Integer> {
     }
 
     @Override
-    public Integer onRectangle(final Rectangle q) {
+    public Integer onRectangle(final Rectangle q) { // BOTH OF THESE WAYS WORK FINE
       return 1;
+        /*
+        int num_of_shape = 0;
+        num_of_shape++;
+        return num_of_shape;
+        */
     }
 
     @Override
