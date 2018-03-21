@@ -15,7 +15,6 @@ public class Circle implements Shape {
     public int getRadius() {
         return radius;
     }
-
     @Override
     public <Result> Result accept(final Visitor<Result> v) {
         return v.onCircle(this);
