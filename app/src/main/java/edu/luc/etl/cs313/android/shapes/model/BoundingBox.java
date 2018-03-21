@@ -2,6 +2,8 @@ package edu.luc.etl.cs313.android.shapes.model;
 
 import java.util.Iterator;
 
+import static java.lang.Integer.MAX_VALUE;
+
 
 /**
  * A shape visitor for calculating the bounding box, that is, the smallest
@@ -34,9 +36,9 @@ public class BoundingBox implements Visitor<Location> {
         int max_y;
         max_y = 0;
         int min_x;
-        min_x = Integer.MAX_VALUE;
+        min_x = MAX_VALUE; // SO WE CAN ACCOUNT FOR SITUATIONS WHERE THERE IS NO VALUE
         int min_y;
-        min_y = Integer.MAX_VALUE;
+        min_y = MAX_VALUE;
 
         final Iterator<? extends Shape> itr = g.getShapes().iterator();
         if (itr.hasNext()) {

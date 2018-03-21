@@ -16,7 +16,7 @@ public class Point extends Location {
 	} */
 
     public Point(final int x, final int y) {
-        super(x, y, new Circle(0));
+        super(x , y, new Circle(0));
         if (x < 0) throw new AssertionError();
         if (y < 0) throw new AssertionError();
     }
