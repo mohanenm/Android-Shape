@@ -32,7 +32,6 @@ public class DrawWidget extends View {
 	// to Fixtures.complexGroup and test the app on an emulator or Android device
 	// to make sure the correct figure is drawn (see Project 3 description for link)
 
-
 	@Override
 	@SuppressLint("DrawAllocation")
 	protected void onDraw(final Canvas canvas) {

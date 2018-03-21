@@ -1,9 +1,7 @@
 package edu.luc.etl.cs313.android.shapes.model;
 
 import java.util.Iterator;
-
 import static java.lang.Integer.MAX_VALUE;
-
 
 /**
  * A shape visitor for calculating the bounding box, that is, the smallest
@@ -44,22 +42,22 @@ public class BoundingBox implements Visitor<Location> {
         if (itr.hasNext()) {
             do {
                 final Location s_local = itr.next().accept(this);
-                int x1 = s_local.getX();
-                int y1 = s_local.getY();
-                int x2 = s_local.getX() + ((Rectangle) s_local.getShape()).getWidth();
-                int y2 = s_local.getY() + ((Rectangle) s_local.getShape()).getHeight();
+                int x_one = s_local.getX();
+                int y_one = s_local.getY();
+                int x_two = s_local.getX() + ((Rectangle) s_local.getShape()).getWidth();
+                int y_two = s_local.getY() + ((Rectangle) s_local.getShape()).getHeight();
 
-                if (max_x < x2) {
-                    max_x = x2;
+                if (max_x < x_two) {
+                    max_x = x_two;
                 }
-                if (max_y < y2) {
-                    max_y = y2;
+                if (max_y < y_two) {
+                    max_y = y_two;
                 }
-                if (min_x > x1) {
-                    min_x = x1;
+                if (min_x > x_one) {
+                    min_x = x_one;
                 }
-                if (min_y > y1) {
-                    min_y = y1;
+                if (min_y > y_one) {
+                    min_y = y_one;
                 }
             } while (itr.hasNext());
         }
@@ -80,10 +78,7 @@ public class BoundingBox implements Visitor<Location> {
 
     @Override
     public Location onRectangle(final Rectangle r) {
-
-        final int width = r.getWidth();// take width from super, wait......no
-        final int height = r.getHeight();
-        return new Location(0, 0, new Rectangle(width, height)); // this is finally making sense
+        return new Location(0, 0, new Rectangle(r.width, r.height)); // this is finally making sense
     }
 
     @Override
@@ -102,34 +97,7 @@ public class BoundingBox implements Visitor<Location> {
     * spent waaaaaay too much time trying to figure that out
      */
     @Override
-    public Location onPolygon(final Polygon s) {
-        final Iterator<? extends Point> itr = s.getPoints().iterator();
-        Point p = itr.next();
-        int min_x = p.getX();
-        int min_y = p.getY();
-        int max_x = min_x;
-        int max_y = min_y;
-
-        if (itr.hasNext()) {
-            do {
-                p = itr.next();
-                int x = p.getX();
-                int y = p.getY();
-
-                if (min_x > x) {
-                    min_x = x;
-                }
-                if (min_y > y) {
-                    min_y = y;
-                }
-                if (max_x < x) {
-                    max_x = x;
-                }
-                if (max_y < y) {
-                    max_y = y;
-                }
-            } while (itr.hasNext());
-        }
-        return new Location(min_x, min_y, new Rectangle(max_x - min_x, max_y - min_y));
+    public Location onPolygon(final Polygon s) { // i did not think this would work, but it does because polygon extends group!
+        return this.onGroup(s);
     }
 }
