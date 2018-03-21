@@ -17,6 +17,7 @@ there are two errors related to the polygon shape. Other than that, we should be
 * ok back to normal, should commit, havent in a while
 * size and group were temp lost
 * tried to fix a few basic things, the newer api has rendering issues
+* re-formatted code, refactored
 # Learning Objectives
 * Familiarity with a simple graphical (output-only) Android project
 * Basic design patterns and their purpose
