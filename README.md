@@ -1,5 +1,5 @@
 
-#### Read this Faze
+# Development notes
 Started with working out the ideas with Faiz.
 Trying to work out bounding box, group complexity, 
 location. 
@@ -12,6 +12,11 @@ to translate that
 * Added faiz on git and bitbucket 
 * did a lot of the translating from pseudo-code to code. All patterns are good, 
 there are two errors related to the polygon shape. Other than that, we should be good!
+* update: Almost all tests are passing, been like a day of putting code from pseudo => as
+* tried to merge and somehow deleted most files, fetching from bit bucket
+* ok back to normal, should commit, havent in a while
+* size and group were temp lost
+* tried to fix a few basic things, the newer api has rendering issues
 # Learning Objectives
 * Familiarity with a simple graphical (output-only) Android project
 * Basic design patterns and their purpose
@@ -19,7 +24,6 @@ there are two errors related to the polygon shape. Other than that, we should be
     * Decorator pattern
     * Visitor pattern
 # Reading/Listening
-
 * SE Radio episode 1
 * APPP chapters 31 and 35
 
@@ -52,5 +56,3 @@ You can view the resulting test reports in HTML by opening this file in your bro
     app/build/reports/tests/debug/index.html
 
 (So far, this example does not include any Android instrumentation tests.)
-#### Note:
-__I (Faisal) couldn't push/pull to this project because my laptop was damaged at the time that we started and finished the project.__

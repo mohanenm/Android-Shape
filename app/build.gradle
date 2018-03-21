@@ -1,3 +1,5 @@
+// removed lint, because was directed by SO. The package has outdated aspects
+
 buildscript {
     repositories {
         jcenter()
