@@ -45,13 +45,13 @@ public class Draw implements Visitor<Void> {
 
 	@Override
 	public Void onStroke(final Stroke c) {
-		int c1= paint.getColor();
-		Style s1=paint.getStyle();
+		int color= paint.getColor();
+		Style style=paint.getStyle();
 		paint.setColor(c.getColor());
 		paint.setStyle(Style.STROKE);
 		c.getShape().accept(this);
-		paint.setColor(c1);
-		paint.setStyle(s1);
+		paint.setColor(color);
+		paint.setStyle(style);
 		return null;
 	}
 
