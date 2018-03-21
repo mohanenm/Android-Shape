@@ -46,7 +46,7 @@ In Android Studio:
 
 * right-click on `app/java/edu...shapes (test)`, then choose `Run Tests in edu...`
 
-You can also use Gradle in a Terminal window:
+You can also use Gradle in a Terminal window =>
 
     $ gradlew testDebug   # on a Windows PC
     $ ./gradlew testDebug # on a Mac or Linux PC
