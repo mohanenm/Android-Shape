@@ -9,19 +9,19 @@ import java.util.List;
  */
 public class Group implements Shape {
 
-	protected final List<? extends Shape> shapes;
+    protected final List<? extends Shape> shapes;
 
-	public Group(final Shape... shapes) {
-		this.shapes = Arrays.asList(shapes);
-	}
+    public Group(final Shape... shapes) {
+        this.shapes = Arrays.asList(shapes);
+    }
 
-	public List<? extends Shape> getShapes() {
-		return Collections.unmodifiableList(shapes);
-	}
+    public List<? extends Shape> getShapes() {
+        return Collections.unmodifiableList(shapes);
+    }
 
-	@Override
-	public <Result> Result accept(final Visitor<Result> v) {
-		return v.onGroup(this);
-	}
+    @Override
+    public <Result> Result accept(final Visitor<Result> v) {
+        return v.onGroup(this);
+    }
 
 }

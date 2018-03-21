@@ -1,5 +1,4 @@
 package edu.luc.etl.cs313.android.shapes.model;
-import java.util.Iterator;
 
 /**
  * A visitor to compute the number of basic shapes in a (possibly complex)
@@ -12,28 +11,32 @@ public class Size implements Visitor<Integer> {
     // interface=methods: get and accept states
 
     @Override
-    public Integer onPolygon(final Polygon p) {int num_of_shape =0;
+    public Integer onPolygon(final Polygon p) {
+        int num_of_shape = 0;
         num_of_shape++;
         return num_of_shape;
 
     }
 
     @Override
-    public Integer onCircle(final Circle c) {int num_of_shape =0;
+    public Integer onCircle(final Circle c) {
+        int num_of_shape = 0;
         num_of_shape++;
         return num_of_shape;
     }
 
     @Override
-    public Integer onGroup(final Group g) {int num_of_shape =0;
-        for(Shape shape : g.getShapes()){
+    public Integer onGroup(final Group g) {
+        int num_of_shape = 0;
+        for (Shape shape : g.getShapes()) {
             num_of_shape += shape.accept(this);
         }
         return num_of_shape;
     }
 
     @Override
-    public Integer onRectangle(final Rectangle q) {int num_of_shape =0;
+    public Integer onRectangle(final Rectangle q) {
+        int num_of_shape = 0;
         num_of_shape++;
         return num_of_shape;
     }
@@ -44,7 +47,8 @@ public class Size implements Visitor<Integer> {
     }
 
     @Override
-    public Integer onFill(final Fill c) {return c.getShape().accept(this);
+    public Integer onFill(final Fill c) {
+        return c.getShape().accept(this);
 
     }
 
@@ -54,7 +58,8 @@ public class Size implements Visitor<Integer> {
     }
 
     @Override
-    public Integer onStroke(final Stroke c) {return c.getShape().accept(this);
+    public Integer onStroke(final Stroke c) {
+        return c.getShape().accept(this);
 
     }
 }

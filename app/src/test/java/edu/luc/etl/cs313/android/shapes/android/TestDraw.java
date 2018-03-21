@@ -74,7 +74,7 @@ public class TestDraw {
 		inOrder.verify(canvas).drawRect(0, 0, 300, 60, paint);
 		inOrder.verify(paint).setStyle(any(Style.class));
 		inOrder.verify(paint).setColor(Color.CYAN);
-		inOrder.verify(canvas).drawLines((float[]) any(), eq(paint));
+		inOrder.verify(canvas).drawLines(any(), eq(paint));
 		inOrder.verify(paint).setColor(anyInt());
 		inOrder.verify(canvas).translate(100, 200);
 		inOrder.verify(paint).setColor(Color.MAGENTA);
