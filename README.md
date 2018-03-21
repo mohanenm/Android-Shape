@@ -1,5 +1,5 @@
 
-# read this faiz
+#### Read this Faze
 Started with working out the ideas with Faiz.
 Trying to work out bounding box, group complexity, 
 location. 
@@ -52,3 +52,5 @@ You can view the resulting test reports in HTML by opening this file in your bro
     app/build/reports/tests/debug/index.html
 
 (So far, this example does not include any Android instrumentation tests.)
+#### Note:
+__I (Faisal) couldn't push/pull to this project because my laptop was damaged at the time that we started and finished the project.__
