@@ -13,42 +13,29 @@ public class Size implements Visitor<Integer> {
     @Override
     public Integer onPolygon(final Polygon p) {
         return 1;
-
-        /*
-        int num_of_shape = 0;
-        num_of_shape++;
-        return num_of_shape; */
+      //can be done with counter, does
 
     }
 
     @Override
     public Integer onCircle(final Circle c) {
         return 1;  // FAIZ, WHY DO WE NOT HAVE TO COUNT THESE WITH A COUNTER//????????!!!!!!!!!1
-
-        /*
-        int num_of_shape = 0;
-        num_of_shape++;
-        return num_of_shape;
-        */
     }
 
     @Override
     public Integer onGroup(final Group g) {
-        int num_of_shape = 0;
+        int group_num = 0;
         for (Shape shape : g.getShapes()) { // (shapes) implement shape, polygon extends group, so you only need to count group
-            num_of_shape += shape.accept(this); // previous way may have been better, but it does not seem crucial
+            group_num = group_num  + shape.accept(this);{
+            }
         }
-        return num_of_shape;
+        return group_num;
     }
 
     @Override
     public Integer onRectangle(final Rectangle q) { // BOTH OF THESE WAYS WORK FINE
       return 1;
-        /*
-        int num_of_shape = 0;
-        num_of_shape++;
-        return num_of_shape;
-        */
+        // we can do this with a counter as well, but is not necessary
     }
 
     @Override

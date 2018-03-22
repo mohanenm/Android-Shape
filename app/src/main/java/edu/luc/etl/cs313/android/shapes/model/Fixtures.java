@@ -7,7 +7,7 @@ import android.graphics.Color;
  */
 public class Fixtures {
 
-    public static final Shape simpleCircle = new Circle(50);
+    public static final Shape simlpleCircle = new Circle(50);
     public static final Shape simpleLocation = new Location(70, 30, new Rectangle(80, 120));
     public static final Shape simpleFill = new Fill(new Rectangle(80, 120));
     public static final Shape simpleStroke = new Stroke(Color.RED, new Rectangle(80, 120));

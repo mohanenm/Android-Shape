@@ -18,6 +18,10 @@ public class Circle implements Shape {
 
     @Override
     public <Result> Result accept(final Visitor<Result> v) {
+
+
+
+
         return v.onCircle(this);
     }
 }

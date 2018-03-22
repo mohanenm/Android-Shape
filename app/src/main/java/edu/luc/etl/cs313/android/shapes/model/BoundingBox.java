@@ -2,6 +2,7 @@ package edu.luc.etl.cs313.android.shapes.model;
 
 import java.util.Iterator;
 import static java.lang.Integer.MAX_VALUE;
+import static java.lang.Integer.MIN_VALUE;
 
 /**
  * A shape visitor for calculating the bounding box, that is, the smallest
@@ -20,13 +21,10 @@ public class BoundingBox implements Visitor<Location> {
         final int radius = c.getRadius();
         return new Location(-radius, -radius, new Rectangle(2 * radius, 2 * radius));
     }
-
     @Override
     public Location onFill(final Fill f) {
-
-        return f.getShape().accept(this);
+        return f.getShape().accept(this); // accept location where needs filling
     }
-
     @Override
     public Location onGroup(final Group g) {
         int max_x;  // for sake of readability!!!
