@@ -126,7 +126,6 @@ public class Draw implements Visitor<Void> {
 			}
 		}
 		final float pnts[] = new float[point_one.size()+2];
-
 		for ( float p : point_one )
 		{
 			pnts[itr_add_pts] = p;
