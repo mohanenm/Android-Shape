@@ -109,7 +109,6 @@ public class Draw implements Visitor<Void> {
 		point_one.add(one_p[0]);
 		point_one.add(one_p[1]);
 
-
 		for (int i = 1; i < s.getPoints().size(); i++ )
 		{
 			Float xi=(float) s.getPoints().get(i).getX();
